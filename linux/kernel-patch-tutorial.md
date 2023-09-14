@@ -1,5 +1,9 @@
 Welcome to the kernel-patch-tutorial!
 
+目标为搜集/整理：
+   所有和做kernel upstream相关的，能提高效率的（工具，流程，方法，规则，小tips）
+
+
 # 提交内核补丁
 当我们准备开发并提交内核补丁时，大致有哪些环节，每个环节中一般会遇到哪些问题。
 
@@ -8,6 +12,12 @@ Welcome to the kernel-patch-tutorial!
 ### 基于哪个分支进行开发？
 
 ### 怎么拉取该分支？
+
+#### git checkout
+
+### 如何快速复制整个仓库
+
+#### 用文件系统COW特性复制整个代码仓库，btrfs snapshot, zfs clone
 
 ## 修改或开发新的代码
 
@@ -25,7 +35,9 @@ Welcome to the kernel-patch-tutorial!
 
 ### 怎么正确生成单个补丁？
 
-### 怎么正确生成补丁集？
+### 怎么正确生成补丁集（多个补丁）？
+#### cover letter
+#### 用b4 or git format-patch (参数)
 
 ## 正确提交到邮件列表
 
@@ -60,31 +72,49 @@ Welcome to the kernel-patch-tutorial!
 #### 有已知Bug
 
 # 检索上游补丁
-当我们想查阅或学习上游已有的补丁时，有哪些途径，以及怎么才能更高效
+##当我们想查阅或学习上游已有的补丁时，有哪些途径，以及怎么才能更高效
 
 ## 如何高效使用邮件列表
 
 ### 怎么快速找到感兴趣的补丁及邮件？
+### google
+#### lore （搜索mailinglist）
+#### lei
+#### patchwork
 
 ### 怎么及时收到有关自己的邮件？
+#### subscribe 邮件列表+filter
+#### public-inbox + lei
 
 # 以下工具也许对你非常有帮助
 
 ### VIM
+#### 插件相关
 
 ### git
 #### 配置
 #### 提高upstream效率的常用命令
 
 ### git send-email 
+#### 如何设置
 
-### lei
+### public-inbox ( lei )
 
-### b4
+### b4 ( 发补丁，生成补丁，管理版本）
+
+### stgit
+在提交补丁过程中，很可能要反复修改，发布多个版本，这时可以用stgit来管理补丁，比b4的功能要强大
+https://stacked-git.github.io/
+https://stacked-git.github.io/guides/tutorial/
+
+### git-pw pwclient
+https://github.com/getpatchwork/git-pw
+https://github.com/getpatchwork/pwclient
 
 ### mutt
 
 ### nntp
+#### 订阅lore nntp 邮件列表
 
 ### msmtp
 
