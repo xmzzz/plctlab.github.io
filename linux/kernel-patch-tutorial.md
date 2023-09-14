@@ -95,19 +95,58 @@ Welcome to the kernel-patch-tutorial!
 #### 配置
 #### 提高upstream效率的常用命令
 
+用alias！在gitconfig文件中，可以配置
+[alias]
+        st = status
+        ad = add
+        rt = reset
+        lg = log
+        fh = fetch
+        ci = commit
+        co = checkout
+        br = branch
+        dc = dcommit
+        rb = rebase
+        cp = cherry-pick
+        fm = format-patch
+        df = diff
+        cl = clean
+        mb = merge-base
+        mg = merge
+        wc = whatchanged
+
+
 ### git send-email 
 #### 如何设置
 
 ### public-inbox ( lei )
 
-### b4 ( 发补丁，生成补丁，管理版本）
+https://people.kernel.org/monsieuricon/lore-lei-part-1-getting-started
+https://people.kernel.org/monsieuricon/lore-lei-part-2-now-with-imap
+
+
+### b4
+#### 维护者： mbox, am, diff, pr, ty
+
+#### 贡献者： 发补丁，生成补丁，开发过程中用于管理版本
+https://b4.docs.kernel.org/en/latest/index.html
+
+https://people.kernel.org/monsieuricon/sending-a-kernel-patch-with-b4-part-1
+https://people.kernel.org/monsieuricon/end-to-end-patch-attestation-with-patatt-and-b4
+
 
 ### stgit
 在提交补丁过程中，很可能要反复修改，发布多个版本，这时可以用stgit来管理补丁，比b4的功能要强大
+单个补丁用git commit --amend就可以达到修改的目的
+
+但有多个补丁时，如何方便的修改前面已经提交的补丁，移动补丁（改变顺序），合并，分割（split）补丁？stgit可以
+
 https://stacked-git.github.io/
 https://stacked-git.github.io/guides/tutorial/
 
 ### git-pw pwclient
+通过patchwork查找，下载补丁，等操作
+
 https://github.com/getpatchwork/git-pw
 https://github.com/getpatchwork/pwclient
 
