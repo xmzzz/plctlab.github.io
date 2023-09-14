@@ -166,3 +166,7 @@ https://github.com/getpatchwork/pwclient
 - Documentation/process/development-process.rst
 ## 开源书籍、出版读物、高质量参考资源
 - Documentation/process/kernel-docs.rst
+
+# 值得阅读的资源|博客|站点
+
+- https://people.kernel.org/monsieuricon
