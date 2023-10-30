@@ -43,6 +43,19 @@ Welcome to the kernel-patch-tutorial!
 
 ### 如何编写邮件？
 
+给Linux内核发送补丁，首先要配置好邮件客户端（MUA）
+
+MUA 的配置建议翻阅下面文档，里面有详细的介绍以及常见的MUA的设置方式：
+https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.html
+
+这里摘录一些相对容易出错的配置和建议
+
+最好不已附件的形式发送补丁，最好把补丁作为邮件体的内嵌文本；
+一定要使用纯文本模式，不要使用html模式；
+小心MUA的自动换行，可能会破坏补丁格式；
+尽量不复制粘贴补丁，因为可能会使制表符转换为空格；
+正式发送前，建议先发给自己，并用patch命令测试
+
 ### 邮件需要包含哪些内容？
 
 ### 正确的邮件格式什么样？
