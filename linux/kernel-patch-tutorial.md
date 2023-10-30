@@ -50,11 +50,11 @@ https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.
 
 这里摘录一些相对容易出错的配置和建议
 
-最好不已附件的形式发送补丁，最好把补丁作为邮件体的内嵌文本；
-一定要使用纯文本模式，不要使用html模式；
-小心MUA的自动换行，可能会破坏补丁格式；
-尽量不复制粘贴补丁，因为可能会使制表符转换为空格；
-正式发送前，建议先发给自己，并用patch命令测试
+- 最好不已附件的形式发送补丁，最好把补丁作为邮件体的内嵌文本；
+- 一定要使用纯文本模式，不要使用html模式；
+- 小心MUA的自动换行，可能会破坏补丁格式；
+- 尽量不复制粘贴补丁，因为可能会使制表符转换为空格；
+- 正式发送前，建议先发给自己，并用patch命令测试
 
 ### 邮件需要包含哪些内容？
 
@@ -93,6 +93,9 @@ https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.
 #### google
 #### lore （搜索mailinglist）
 #### lei
+
+- [lore+lei:取消订阅邮件列表，只看自己感兴趣的内容](./lore+lei.md)
+
 #### patchwork
 
 #### FAQ
@@ -239,8 +242,8 @@ lore 是基于 public-inbox 的，邮件是以git commit的形式存储，可以
 
 ### public-inbox ( lei )
 
-https://people.kernel.org/monsieuricon/lore-lei-part-1-getting-started
-https://people.kernel.org/monsieuricon/lore-lei-part-2-now-with-imap
+- https://people.kernel.org/monsieuricon/lore-lei-part-1-getting-started
+- https://people.kernel.org/monsieuricon/lore-lei-part-2-now-with-imap
 
 
 ### b4
