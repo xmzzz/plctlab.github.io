@@ -102,14 +102,16 @@ https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.
 
 - 梳理一下邮件相关的名词、邮件列表相关工具之间的关系，有助于理解本文档
 
-mbox, maildir:
+mbox, maildir
+
  这两个是email常见的存储格式，
  mbox将文件夹中的所有邮件存储为一个文件，而maildir的特点是每个邮件以一个单
  独的文件存储。
  lei 工具过滤并下载到本地的邮件默认以maildir格式存储。
  thunderbird 默认用mbox格式存储邮件。[对maildir格式支持尚不完善。](https://support.mozilla.org/en-US/kb/maildir-thunderbird)
 
-MUA, MTA，MDA:
+MUA, MTA，MDA
+
  email我们虽然使用起来很方便，但邮件系统也是由几个复杂部分连接成的，
 
 发件人:MUA --发送--> MTA -> 若干个MTA... -> MTA -> MDA <--收取-- MUA:收件人
@@ -124,7 +126,8 @@ MUA, MTA，MDA:
   邮件存放在某个文件或特殊的数据库里，这个长期保存邮件的地方就是邮箱。
  邮件到达邮箱后就原地不动等待MUA取邮件，这就是一个完整的收发邮件过程。
  
-POP3, IMAP, SMTP, NNTP:
+POP3, IMAP, SMTP, NNTP
+
  可以理解为邮件传输过程中可用的协议。
  MUA到MTA，以及MTA到MTA之间使用的协议就是SMTP协议，而收邮件时，MUA到MDA之
  间使用的协议最常用的是POP3或IMAP。
@@ -149,6 +152,7 @@ POP3, IMAP, SMTP, NNTP:
   题而不下载内容，而是在阅读的时候下载内容。
 
 lore, lei, public-inbox, grokmirror
+
  https://lore.kernel.org 这里列出了全部的邮件列表，
  https://erol.kernel.org 这里列出了每个邮件列表对应的git仓库
 
@@ -170,7 +174,7 @@ lore, lei, public-inbox, grokmirror
  器。
  [Subscribing to lore lists with grokmirror](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror)
 
-- 我订阅的内核邮件列表流量太高了，每天甚至上千封新邮件，怎么办？
+1. 我订阅的内核邮件列表流量太高了，每天甚至上千封新邮件，怎么办？
 
 内核邮件列表在演进过程中虽然已经划分了单独子系统的列表，但是子系统列表流量
 依然是非常高，正常人应该都无法接受。想象一下，埋头一周时间专心搞开发，一周
@@ -181,7 +185,7 @@ lore, lei, public-inbox, grokmirror
   - [lore+lei:取消订阅邮件列表，只看自己感兴趣的内容](./lore+lei.md)
   - [Using lei, b4, and mutt to do kernel development](https://josefbacik.github.io/kernel/2021/10/18/lei-and-b4.html)
 
-- lore.kernel.org是在线的http服务，离线时怎么访问邮件列表归档？
+2. lore.kernel.org是在线的http服务，离线时怎么访问邮件列表归档？
 
 lore 是基于 public-inbox 的，邮件是以git commit的形式存储，可以很方便的将
 完整的邮件列表镜像归档clone到本地，并且可以开启自己的http、nntp、imap等服
@@ -194,14 +198,14 @@ lore 是基于 public-inbox 的，邮件是以git commit的形式存储，可以
   - [public inbox的httpd,nntpd,imapd服务搭建](public-inbox-server-setup.md)
   - [thunderbird访问本地public inbox nntpd,imapd服务](thunderbird+public-inbox.md)
 
-- 怎么用thunderbird访问自己的public-inbox-imapd服务？
+3. 怎么用thunderbird访问自己的public-inbox-imapd服务？
 
- 参考[thunderbird访问本地public-inbox-imapd](./thunderbird+public-inbox-imapd.md)
+参考[thunderbird访问本地public-inbox-imapd](./thunderbird+public-inbox-imapd.md)
 
-- mutt快速入门（基于命令行的MUA）
+4. mutt快速入门（基于命令行的MUA）
 
- [快速配置mutt](./mutt-config.md)
- [mutt常用快捷键参考](./mutt-shortcut-keys.md)
+- [快速配置mutt](./mutt-config.md)
+- [mutt常用快捷键参考](./mutt-shortcut-keys.md)
 
 ### 怎么及时收到有关自己的邮件？
 #### subscribe 邮件列表+filter
@@ -268,7 +272,7 @@ or 直接打补丁
         -3, --prep-3way
 
 准备3way合并
-[什么是3way？](https://www.zhihu.com/question/30200228)
+[(什么是3way？)](https://www.zhihu.com/question/30200228)
 
         -c, --check-newer-revisions
 
