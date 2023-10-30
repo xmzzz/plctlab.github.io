@@ -90,10 +90,115 @@ https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.
 ## 如何高效使用邮件列表
 
 ### 怎么快速找到感兴趣的补丁及邮件？
-### google
+#### google
 #### lore （搜索mailinglist）
 #### lei
 #### patchwork
+
+#### FAQ
+
+- 梳理一下邮件相关的名词、邮件列表相关工具之间的关系，有助于理解本文档
+
+mbox, maildir:
+ 这两个是email常见的存储格式，
+ mbox将文件夹中的所有邮件存储为一个文件，而maildir的特点是每个邮件以一个单
+ 独的文件存储。
+ lei 工具过滤并下载到本地的邮件默认以maildir格式存储。
+ thunderbird 默认用mbox格式存储邮件。[对maildir格式支持尚不完善。](https://support.mozilla.org/en-US/kb/maildir-thunderbird)
+
+MUA, MTA，MDA:
+ email我们虽然使用起来很方便，但邮件系统也是由几个复杂部分连接成的，
+
+发件人:MUA --发送--> MTA -> 若干个MTA... -> MTA -> MDA <--收取-- MUA:收件人
+
+ MUA(Mail User Agent，邮件用户代理)
+  MUA就是我们日常使用的邮件客户端，如thunderbird, outlook等
+ MTA(Mail Transfer Agent，邮件传输代理)
+  MUA不是直接将邮件发送到收件人邮箱，而是通过MTA代为传递，sendmail和msmtp
+  就是扮演MTA的角色
+ MDA(Mail Delivery Agent，邮件投递代理)
+  一封邮件从MUA发出后，可能通过一个或多个MTA传递后最终到达MDA，这时就会把
+  邮件存放在某个文件或特殊的数据库里，这个长期保存邮件的地方就是邮箱。
+ 邮件到达邮箱后就原地不动等待MUA取邮件，这就是一个完整的收发邮件过程。
+ 
+POP3, IMAP, SMTP, NNTP:
+ 可以理解为邮件传输过程中可用的协议。
+ MUA到MTA，以及MTA到MTA之间使用的协议就是SMTP协议，而收邮件时，MUA到MDA之
+ 间使用的协议最常用的是POP3或IMAP。
+
+ POP3 (Post Office Protocol 3)
+  POP3协议允许 MUA 下载服务器上的邮件，但是在 MUA 的操作（如移动邮件、标记
+  已读等），不会反馈到服务器上。比如对thunderbird用户最直观的影响就是在本
+  地建立的filter过滤条件和分类的邮箱文件夹并不会同步到服务器上。因此在另外
+  一个新的客户端读取邮件就看不到这些文件夹。
+
+ IMAP (Internet Mail Access Protocol)
+  IMAP MUA收取的邮件仍然保留在服务器上，同时在MUA上的操作都会反馈到服务器上。
+  该协议最大的好处就是适合多个客户端查看邮件。
+
+ SMTP (Simple Mail Transfer Protocol)
+  用来发送邮件。
+  是一组用于从源地址到目的地址传输邮件的规范，通过它来控制邮件的中转方式。
+
+ NNTP (Network News Transfer Protocol)
+  网络新闻传输协议。
+  thunderbird支持该协议，可以订阅内核邮件列表的NNTP服务，特点是下载邮件标
+  题而不下载内容，而是在阅读的时候下载内容。
+
+lore, lei, public-inbox, grokmirror
+ https://lore.kernel.org 这里列出了全部的邮件列表，
+ https://erol.kernel.org 这里列出了每个邮件列表对应的git仓库
+
+ 邮件列表的git仓库clone下来之后还不能被直接使用。那需要怎么阅读归档中的邮
+ 件呢？可以参考[mirroriong instructions](https://lore.kernel.org/linux-riscv/_/text/mirror/)在git仓库之上建立public inbox。
+ 大致过程为 public-inbox-init + public-inbox-index，
+ 注意每个lore.kernel.org邮件列表页面最下面都会有mirroriong instructions。
+
+ public inbox可在本地发起httpd、imapd、nntpd等服务，相当于在本地搭建了邮件
+ 列表服务器。MUA可以通过imapd、nntpd等服务访问归档中的邮件，也可以直接用浏
+ 览器来访问httpd服务，相当于搭建了自己的lore.kernel.org。并且可以配合lei来
+ 检索邮件。接收新的邮件则需要定期拉取更新，类似git pull。
+ [public inbox简介](./public-inbox.md)
+ [用public-inbox在本地搭建内核邮件列表镜像](./public-inbox-httpd-imapd-nntpd.md)
+ 
+ grokmirror是镜像邮件列表的辅助工具，其中的grok-pull可以方便的拉取多个列表
+ 仓库，并定期更新。拉取的git仓库可以用上述的public-inbox服务来查看邮件，也
+ 可以搭配procmail等工具自动将更新的邮件发送到你的MUA，还可以同步到IMAP服务
+ 器。
+ [Subscribing to lore lists with grokmirror](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror)
+
+- 我订阅的内核邮件列表流量太高了，每天甚至上千封新邮件，怎么办？
+
+内核邮件列表在演进过程中虽然已经划分了单独子系统的列表，但是子系统列表流量
+依然是非常高，正常人应该都无法接受。想象一下，埋头一周时间专心搞开发，一周
+后回来查阅已经挤满了数千封未读邮件的邮箱，这很难去仔细查找对自己有用的信息。
+
+以下方案可以帮到你：
+
+  - [lore+lei:取消订阅邮件列表，只看自己感兴趣的内容](./lore+lei.md)
+  - [Using lei, b4, and mutt to do kernel development](https://josefbacik.github.io/kernel/2021/10/18/lei-and-b4.html)
+
+- lore.kernel.org是在线的http服务，离线时怎么访问邮件列表归档？
+
+lore 是基于 public-inbox 的，邮件是以git commit的形式存储，可以很方便的将
+完整的邮件列表镜像归档clone到本地，并且可以开启自己的http、nntp、imap等服
+务。本地维护一份邮件列表归档，会使得开发、检索信息等更加方便。
+
+  - [参考public inbox mirroring instructions建立内核邮件列表本地镜像](./public-inbox-mirring-instructions.md)
+  - [使用grok-mirror建立内核邮件列表git镜像](./grok-mirror-lore.md)
+  - [grok-mirror+procmail+pi-piper自动更新本地列表并同步到你的邮箱](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror)
+  - [lei+mutt:检索邮件下载到本地，使用mutt阅读和review](./lei+mutt.md)
+  - [public inbox的httpd,nntpd,imapd服务搭建](public-inbox-server-setup.md)
+  - [thunderbird访问本地public inbox nntpd,imapd服务](thunderbird+public-inbox.md)
+
+- 怎么用thunderbird访问自己的public-inbox-imapd服务？
+
+ 参考[thunderbird访问本地public-inbox-imapd](./thunderbird+public-inbox-imapd.md)
+
+- mutt快速入门（基于命令行的MUA）
+
+ [快速配置mutt](./mutt-config.md)
+ [mutt常用快捷键参考](./mutt-shortcut-keys.md)
 
 ### 怎么及时收到有关自己的邮件？
 #### subscribe 邮件列表+filter
@@ -139,6 +244,53 @@ https://people.kernel.org/monsieuricon/lore-lei-part-2-now-with-imap
 
 
 ### b4
+
+b4 am
+
+将补丁集下载保存为.mbox，运用Reviewed-by
+
+        b4 am <message-id>
+
+or 直接打补丁
+
+        b4 am -o - <message-id> | git am
+
+`-m ~/Mail` 可以从本地存储的邮件中获取
+配置文件存储在git config
+
+        -g, --guess-base
+
+缺少base-commit信息时，该参数可以用来猜测base
+
+        -3, --prep-3way
+
+准备3way合并
+[什么是3way？](https://www.zhihu.com/question/30200228)
+
+        -c, --check-newer-revisions
+
+检查patch是否有更新
+
+更多用法可参考 b4 am --help
+
+b4 mbox
+
+        b4 mbox -fo ~/Mail <msgid>
+
+下载整个thread，存储到mailbox
+过滤mailbox中重复的邮件
+与mutt配合，抓取整个thread。适合有人在thread中Cc你
+
+        macro index 4 "<pipe-message>b4 mbox -fo ~/Mail<return>"
+        // press 4 to fetch the rest of the thread from lore
+
+b4 diff
+
+显示patch两个不同版本之间的range-diff
+需要index包含在git tree中
+
+        b4 diff <msgid> -v 3 5
+
 #### 维护者： mbox, am, diff, pr, ty
 
 #### 贡献者： 发补丁，生成补丁，开发过程中用于管理版本
