@@ -28,15 +28,15 @@
 
 ### 1.1.1 下载 kernel 源码
 
-[git.kernel.org 上的 kernel 源码](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/)下载速度可能会慢，在国内可以尝试下面方法加速获取kernel源码。
+[官方 kernel 源码仓](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/)下载速度可能会慢，在国内可以尝试下面方法加速获取kernel源码。
 
-* [TODO:git clone linux kernel](./git-clone-linux-kernel.md)
+* [(Comming soon...):git clone linux kernel](./git-clone-linux-kernel.md)
 
 ### 1.1.2 有关搜索的 git 命令
 
 如果你已经有了完整的linux kernel代码仓库，那么几个常用的git命令就能达到检索目的。
 
-* [TODO:检索git commit历史](./git.md)
+* [(Comming soon...):检索git commit历史](./git.md)
 
 ## 1.2 搜索邮件列表归档
 
@@ -48,7 +48,7 @@ linux kernel开发一直是以电子邮件的形式进行的，因此邮件列�
 
 ### 1.2.1 google
 
-TODO
+(Comming soon...)
 
 ### 1.2.2 lore
 
@@ -72,7 +72,7 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 
 ## 1.3 patchwork
 
-TODO
+(Comming soon...)
 
 可以直接通过 https://patchwork.kernel.org 进行查找、下载补丁等操作。也可以使用一些工具。
 
@@ -81,7 +81,7 @@ TODO
 
 # 2. 开发环境与代码风格
 
-内核开发一般会遇到以下场景
+内核开发过程可能会在以下场景中遇到问题
 
 * 下载最新的 kernel 源码
 * 切换到正确的内核 git 分支
@@ -91,28 +91,50 @@ TODO
 
 ## 2.1 下载最新的 kernel 源码
 
-TODO
+(Comming soon...)
 
 下载有完整历史的 kernel 源码，之后切换到特定版本的分支进行开发。
 
-* [TODO:git clone linux kernel](./git-clone-linux-kernel.md)
+* [(Comming soon...):git clone linux kernel](./git-clone-linux-kernel.md)
 
 ## 2.2 选取正确的内核开发分支
 
 [kernel的相关分支](https://git.kernel.org/)数量很多，怎么知道我应该在哪个分支开发，并且切换到该分支。
 
-* [TODO:选取正确的内核开发分支](./select-kernel-branch.md)
+* [(Comming soon...):选取正确的内核开发分支](./select-kernel-branch.md)
 
 ## 2.3 开发过程补丁管理
 
-TODO
+(Comming soon...)
 
 在提交补丁过程中，很可能要反复修改，发布多个版本。如果是单个补丁，用 `git commit --amend` 就可以达到修改的目的。但有多个补丁时，如何方便的修改前面已经提交的补丁？可以用 stgit 来帮助管理补丁。stgit 可以移动补丁（改变顺序）、合并、分割（split）补丁，比 b4 的功能要强大。
 
 * https://stacked-git.github.io/
 * https://stacked-git.github.io/guides/tutorial/
 
+## 2.4 生成补丁与测试
 
+(Comming soon...)
+
+## 2.5 发送补丁到邮件列表
+
+(Comming soon...)
+
+# 3. 提交内核代码
+
+(Comming soon...)
+
+# 4. review 内核补丁
+
+(Comming soon...)
+
+# 5. 内核邮件列表相关
+
+(Comming soon...)
+
+# 6. 想知道更多提高效率的工具
+
+(Comming soon...)
 
 
 
