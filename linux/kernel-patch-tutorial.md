@@ -1,8 +1,7 @@
 # Welcome to the kernel-patch-tutorial!
 
-本文档的目标是搜集/整理所有和做kernel upstream流程相关的，能提高效率的（工具，方法，规则，小tips等）。
-
-本文档不涉及linux kernel内核开发的技术内容。
+本文档的目标是搜集/整理所有和做**kernel upstream流程**相关的，能提高效率的（工具，方法，规则，小tips等）。
+本文档**不涉及**linux kernel内核开发的技术内容。
 
 在内核开发流程中，你在下面哪个环节遇到了问题？
 
