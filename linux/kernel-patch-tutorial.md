@@ -1,8 +1,62 @@
-Welcome to the kernel-patch-tutorial!
+# Welcome to the kernel-patch-tutorial!
 
-目标为搜集/整理：
-   所有和做kernel upstream相关的，能提高效率的（工具，流程，方法，规则，小tips）
+本文档的目标是搜集/整理所有和做kernel upstream流程相关的，能提高效率的（工具，方法，规则，小tips等）。
 
+本文档不涉及linux kernel内核开发的技术内容。
+
+在内核开发流程中，你在下面哪个环节遇到了问题？
+
+* 检索上游补丁
+* 开发环境与代码风格
+* 提交内核代码
+* 内核邮件列表相关
+* 想知道更多提高效率的工具
+
+# 1. 检索上游补丁
+
+检索上游补丁主要有以下几种方式。
+
+* 检索git commit历史
+* 搜索邮件列表归档
+* patchwork
+
+## 1.1 检索git commit历史
+
+* 下载完整历史的kernel源码
+* 常用的git命令指南
+
+### 1.1.1 下载kernel源码
+
+[git.kernel.org上的kernel源码](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/)下载速度可能会很慢，在国内可以尝试下面方法加速获取kernel源码。
+
+* [TODO:git clone linux kernel](./git-clone-linux-kernel.md)
+
+### 1.1.2 有关搜索的git命令
+
+如果你已经有了完整的linux kernel代码仓库，那么几个常用的git命令就能达到检索目的。
+
+* [TODO:检索git commit历史](./git.md)
+
+## 1.2 搜索邮件列表归档
+
+linux kernel开发一直是以电子邮件的形式进行的，因此邮件列表归档里可以找到很多有价值的信息。有关邮件列表的内容会在[FIXME:内核邮件列表相关](./mailing-list.md)章节介绍，这里只提供有关搜索邮件列表归档的指南。
+
+* google
+* lore
+* lei
+
+##
+
+
+
+[kernel的相关分支](https://git.kernel.org/)数量很多，怎么知道我应该在哪个分支开发？
+
+* [TODO:选取正确的开发分支](./select-kernel-branch.md)
+
+
+
+
+内核代码分支
 
 # 提交内核补丁
 当我们准备开发并提交内核补丁时，大致有哪些环节，每个环节中一般会遇到哪些问题。
@@ -59,6 +113,8 @@ https://www.kernel.org/doc/html/latest/translations/zh_CN/process/email-clients.
 ### 邮件需要包含哪些内容？
 
 ### 正确的邮件格式什么样？
+
+[内核邮件列表礼仪](https://subspace.kernel.org/etiquette.html)
 
 ### 怎么知道邮件应该发给谁
 
