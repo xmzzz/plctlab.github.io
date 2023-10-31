@@ -9,6 +9,7 @@
 * [检索上游补丁](#1-检索上游补丁)
 * [开发环境与代码风格](#todo)
 * 提交内核代码
+* review 内核补丁
 * 内核邮件列表相关
 * 想知道更多提高效率的工具
 
@@ -16,22 +17,22 @@
 
 检索上游补丁主要有以下几种方式。
 
-* 检索git commit历史
+* 检索 git commit 历史
 * 搜索邮件列表归档
 * patchwork
 
-## 1.1 检索git commit历史
+## 1.1 检索 git commit 历史
 
-* 下载完整历史的kernel源码
-* 常用的git命令指南
+* 下载完整历史的 kernel 源码
+* 常用的 git 命令指南
 
-### 1.1.1 下载kernel源码
+### 1.1.1 下载 kernel 源码
 
-[git.kernel.org上的kernel源码](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/)下载速度可能会很慢，在国内可以尝试下面方法加速获取kernel源码。
+[git.kernel.org 上的 kernel 源码](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/)下载速度可能会慢，在国内可以尝试下面方法加速获取kernel源码。
 
 * [TODO:git clone linux kernel](./git-clone-linux-kernel.md)
 
-### 1.1.2 有关搜索的git命令
+### 1.1.2 有关搜索的 git 命令
 
 如果你已经有了完整的linux kernel代码仓库，那么几个常用的git命令就能达到检索目的。
 
@@ -45,18 +46,75 @@ linux kernel开发一直是以电子邮件的形式进行的，因此邮件列�
 * lore
 * lei
 
-##
+### 1.2.1 google
+
+TODO
+
+### 1.2.2 lore
+
+lore 一般是指 https://lore.kernel.org ,这里列出了 kernel.org 托管的全部邮件列表，可以到具体的邮件列表中搜索关键字，如 [linux-riscv mailing list](https://lore.kernel.org/linux-riscv/)，也可以进入 https://lore.kernel.org/all 在全部邮件列表中搜索。
+
+注意除了关键字搜索，lore 还支持更复杂更精确的搜索方法，该方法基于 public-inbox 的内置搜索引擎 Xapian，比如[这个搜索](https://lore.kernel.org/all/?x=m&t=1&q=dfn%3Aarch%2Friscv%2FMakefile+AND+rt%3A1697550089..)可以在全部列表中找修改了 `arch/riscv/Makefile` 文件，且收件时间在过去两周内的补丁及邮件。该方法具体可参考下面 lei 小节中的相关指南。
+
+### 1.2.3 lei
+
+lei (public-inbox local email interface) 是一个可以与 lore.kernel.org 对接的工具，可以帮你从任何列表中检索并下载邮件。
+
+lei的主要特点如下：
+
+1. 搜索基于 public-inbox 的邮件列表并下载到本地
+2. 提供了高效的检索方法
+3. 检索结果可以下载到本地邮箱，也可以投递到IMAP服务器
+
+lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lore + lei 甚至可以替代订阅邮件列表，使得只关注自己感兴趣的邮件，避免对自己无用的邮件充满邮箱。相关内容可参考下面文章。
+
+* [lore + lei: 高效检索内核邮件列表](./lore+lei.md)
+
+## 1.3 patchwork
+
+TODO
+
+可以直接通过 https://patchwork.kernel.org 进行查找、下载补丁等操作。也可以使用一些工具。
+
+* [git-pw](https://github.com/getpatchwork/git-pw)
+* [pwclient](https://github.com/getpatchwork/pwclient)
+
+# 2. 开发环境与代码风格
+
+内核开发一般会遇到以下场景
+
+* 下载最新的 kernel 源码
+* 切换到正确的内核 git 分支
+* 开发过程补丁管理
+* 生成补丁与测试
+* 发送补丁到邮件列表
+
+## 2.1 下载最新的 kernel 源码
+
+TODO
+
+下载有完整历史的 kernel 源码，之后切换到特定版本的分支进行开发。
+
+* [TODO:git clone linux kernel](./git-clone-linux-kernel.md)
+
+## 2.2 选取正确的内核开发分支
+
+[kernel的相关分支](https://git.kernel.org/)数量很多，怎么知道我应该在哪个分支开发，并且切换到该分支。
+
+* [TODO:选取正确的内核开发分支](./select-kernel-branch.md)
+
+## 2.3 开发过程补丁管理
+
+TODO
+
+在提交补丁过程中，很可能要反复修改，发布多个版本。如果是单个补丁，用 `git commit --amend` 就可以达到修改的目的。但有多个补丁时，如何方便的修改前面已经提交的补丁？可以用 stgit 来帮助管理补丁。stgit 可以移动补丁（改变顺序）、合并、分割（split）补丁，比 b4 的功能要强大。
+
+* https://stacked-git.github.io/
+* https://stacked-git.github.io/guides/tutorial/
 
 
 
-[kernel的相关分支](https://git.kernel.org/)数量很多，怎么知道我应该在哪个分支开发？
 
-* [TODO:选取正确的开发分支](./select-kernel-branch.md)
-
-
-
-
-内核代码分支
 
 # 提交内核补丁
 当我们准备开发并提交内核补丁时，大致有哪些环节，每个环节中一般会遇到哪些问题。
