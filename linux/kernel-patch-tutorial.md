@@ -140,7 +140,7 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 如果对邮件系统相关的概念不熟悉，可以看下这篇介绍，补一下邮件相关的计算机网络基础。
 
 
-* [todo 邮件相关概念介绍](./about-email.md)
+* [邮件相关概念介绍](./about-email.md)
 
 ## 5.2 订阅邮件列表
 
