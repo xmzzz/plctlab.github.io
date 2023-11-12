@@ -148,7 +148,7 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 
 * [todo 传统方法订阅邮件列表](./)
 * [todo 订阅 NNTP](./)
-* [todo lei 拉取感兴趣的邮件](./)
+* [lei 拉取感兴趣的邮件](./lore+lei.md)
 * [todo 更新本地邮件列表镜像](./)
 
 ## 5.3 检索邮件列表
