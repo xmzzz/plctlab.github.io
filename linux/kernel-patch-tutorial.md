@@ -161,6 +161,8 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 
 本地搭建列表镜像，相当于在本地有了完整的邮件归档，对开发和邮件检索都会带来便利。
 
+* [用 public-inbox 搭建内核邮件列表本地镜像](./public-inbox.md)
+
 # 6. 想知道更多提高效率的工具
 
 (Comming soon...)
@@ -277,47 +279,6 @@ mbox, maildir
  lei 工具过滤并下载到本地的邮件默认以maildir格式存储。
  thunderbird 默认用mbox格式存储邮件。[对maildir格式支持尚不完善。](https://support.mozilla.org/en-US/kb/maildir-thunderbird)
 
-MUA, MTA，MDA
-
- email我们虽然使用起来很方便，但邮件系统也是由几个复杂部分连接成的，
-
-发件人:MUA --发送--> MTA -> 若干个MTA... -> MTA -> MDA <--收取-- MUA:收件人
-
- MUA(Mail User Agent，邮件用户代理)
-  MUA就是我们日常使用的邮件客户端，如thunderbird, outlook等
- MTA(Mail Transfer Agent，邮件传输代理)
-  MUA不是直接将邮件发送到收件人邮箱，而是通过MTA代为传递，sendmail和msmtp
-  就是扮演MTA的角色
- MDA(Mail Delivery Agent，邮件投递代理)
-  一封邮件从MUA发出后，可能通过一个或多个MTA传递后最终到达MDA，这时就会把
-  邮件存放在某个文件或特殊的数据库里，这个长期保存邮件的地方就是邮箱。
- 邮件到达邮箱后就原地不动等待MUA取邮件，这就是一个完整的收发邮件过程。
- 
-POP3, IMAP, SMTP, NNTP
-
- 可以理解为邮件传输过程中可用的协议。
- MUA到MTA，以及MTA到MTA之间使用的协议就是SMTP协议，而收邮件时，MUA到MDA之
- 间使用的协议最常用的是POP3或IMAP。
-
- POP3 (Post Office Protocol 3)
-  POP3协议允许 MUA 下载服务器上的邮件，但是在 MUA 的操作（如移动邮件、标记
-  已读等），不会反馈到服务器上。比如对thunderbird用户最直观的影响就是在本
-  地建立的filter过滤条件和分类的邮箱文件夹并不会同步到服务器上。因此在另外
-  一个新的客户端读取邮件就看不到这些文件夹。
-
- IMAP (Internet Mail Access Protocol)
-  IMAP MUA收取的邮件仍然保留在服务器上，同时在MUA上的操作都会反馈到服务器上。
-  该协议最大的好处就是适合多个客户端查看邮件。
-
- SMTP (Simple Mail Transfer Protocol)
-  用来发送邮件。
-  是一组用于从源地址到目的地址传输邮件的规范，通过它来控制邮件的中转方式。
-
- NNTP (Network News Transfer Protocol)
-  网络新闻传输协议。
-  thunderbird支持该协议，可以订阅内核邮件列表的NNTP服务，特点是下载邮件标
-  题而不下载内容，而是在阅读的时候下载内容。
-
 lore, lei, public-inbox, grokmirror
 
  https://lore.kernel.org 这里列出了全部的邮件列表，
@@ -340,17 +301,6 @@ lore, lei, public-inbox, grokmirror
  可以搭配procmail等工具自动将更新的邮件发送到你的MUA，还可以同步到IMAP服务
  器。
  [Subscribing to lore lists with grokmirror](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror)
-
-1. 我订阅的内核邮件列表流量太高了，每天甚至上千封新邮件，怎么办？
-
-内核邮件列表在演进过程中虽然已经划分了单独子系统的列表，但是子系统列表流量
-依然是非常高，正常人应该都无法接受。想象一下，埋头一周时间专心搞开发，一周
-后回来查阅已经挤满了数千封未读邮件的邮箱，这很难去仔细查找对自己有用的信息。
-
-以下方案可以帮到你：
-
-  - [lore+lei:取消订阅邮件列表，只看自己感兴趣的内容](./lore+lei.md)
-  - [Using lei, b4, and mutt to do kernel development](https://josefbacik.github.io/kernel/2021/10/18/lei-and-b4.html)
 
 2. lore.kernel.org是在线的http服务，离线时怎么访问邮件列表归档？
 
