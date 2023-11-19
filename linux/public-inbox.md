@@ -196,14 +196,14 @@ IMAP password 不填或任意。public-inbox 会将大的邮件列表分成多�
 
 ## 更新镜像仓库
 
-接下来我们就可以按需定期来拉取更新，从而查收到最新的邮件。注意这里按照拉取镜像时的方法不同，有两种不同的方式更新镜像，混用的话可能会有问题。
+接下来我们就可以按需定期来拉取更新，从而查收到最新的邮件。我试过两种更新镜像的方式：
 
-* git clone
-* public-inbox-clone
+* git fetch 或者 git remote update
+* public-inbox-fetch
 
-### git clone
+### git fetch 或者 git remote update
 
-如果本地镜像是按照第一节描述的 [mirroring instructions](https://lore.kernel.org/linux-riscv/_/text/mirror/) 的方法，即用了 `git clone --mirror http://lore.kernel.org/tools/0 tools/git/0.git` 拉取了镜像。那么可以按照 `git fetch` 或者 `git remote update` 方法更新镜像：
+public-inbox-v2-format 将大的邮件列表分成了多个 EPOCH，从 0 开始按数字排序。用该方法更新镜像理论上只更新当前的 EPOCH：
 
 ```
 $ git --git-dir=tools/git/0.git fetch
@@ -216,17 +216,17 @@ Fetching origin
 ...
 ```
 
-这时如果有更新 git 就会拉取更新，更新后需要进行 index：
+这时如果有更新 git 就会拉取 `0.git` 的更新，更新后需要进行 index：
 
 ```
 $ public-inbox-index
 ```
 
-index 之后，通过 http 刷新下页面就可以看到新的邮件了，imap、nntp需要检查下新的邮件，或者根据设置自动定期检查。
+index 之后，通过 http 刷新下页面就可以看到新的邮件了，imap、nntp 需要检查下新的邮件，或者根据设置自动定期检查。
 
-### public-inbox-clone
+### public-inbox-fetch
 
-这是另一种拉取镜像的方式，用法是 `$ public-inbox-clone URL`：
+先介绍下另一种拉取镜像的方式，用法是 `$ public-inbox-clone URL`：
 
 ```
 $ cd ~/Mail
@@ -267,6 +267,38 @@ $ public-inbox-index
 $ cd tools/
 $ make update
 ```
+
+注意 `public-inbox-fetch` 会检查是否有新的 EPOCH，因此可能会有报错信息，应该是正常的，测试也没发现异常现象。下面是我拉取 linux-riscv 列表的报错信息：
+
+```
+$ cd linux-riscv/
+$ public-inbox-fetch
+
+# inbox URL: http://lore.kernel.org/linux-riscv/
+# /usr/bin/curl -Sf -R -o m-PaF6.tmp http://lore.kernel.org/linux-riscv/manifest.js.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   162  100   162    0     0     26      0  0:00:06  0:00:06 --:--:--    33
+# git --git-dir=/home/xmz/Mail/mail/fetch-linux-riscv/git/0.git fetch
+warning: redirecting to https://lore.kernel.org/linux-riscv/0/
+remote: Enumerating objects: 138, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 138 (delta 1), reused 0 (delta 0), pack-reused 123
+Receiving objects: 100% (138/138), 298.72 KiB | 1024 bytes/s, done.
+Resolving deltas: 100% (7/7), done.
+From http://lore.kernel.org/linux-riscv/0
+   ca89ca9d6..d80f276a2  master     -> master
+# git clone --mirror http://lore.kernel.org/linux-riscv/git/1.git /home/xmz/Mail/mail/fetch-linux-riscv/git/1.git
+Cloning into bare repository '/home/xmz/Mail/mail/fetch-linux-riscv/git/1.git'...
+remote: Not Found
+fatal: repository 'http://lore.kernel.org/linux-riscv/git/1.git/' not found
+error: could not lock config file /home/xmz/Mail/mail/fetch-linux-riscv/git/1.git/config: No such file or directory
+git config -f /home/xmz/Mail/mail/fetch-linux-riscv/git/1.git/config include.path ../../all.git/config failed: $?=65280
+
+$ public-inbox-index
+```
+
 ## 了解更多有关 public inbox
 
 摘录一下 public inbox 文档中有关工作流的内容，可以更加了解 public inbox：

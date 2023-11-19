@@ -162,7 +162,9 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 本地搭建列表镜像，相当于在本地有了完整的邮件归档，对开发和邮件检索都会带来便利。
 
 * [用 public-inbox 搭建内核邮件列表本地镜像](./public-inbox.md)
-* [todo 用 Grokmirror 管理镜像集群](./grokmirror.md)
+* [用 Grokmirror 管理镜像集群](./grokmirror.md)
+* [用 offlineIMAP + public-inbox-watch 镜像邮件列表](./offlineIMAP+public-inbox-watch.md)
+* []()
 
 # 6. 想知道更多提高效率的工具
 
