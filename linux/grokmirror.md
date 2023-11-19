@@ -120,7 +120,7 @@ PID=7644 is worker[0]
 ignoring SIGWINCH since we are not daemonized
 ```
 
-这时通过浏览器访问 `ip:8080/linux-riscv` 就可以看到邮件。也可以用 thunderbird + public-inbox-imapd or public-inbox-nntpd 等方式访问邮件。这种方法需要注意的是，每次要想看到更新的邮件，都需要进行一次 `public-inbox-index` 操作，可以放到 `lore.conf` 中的 `hook` 参数中自动进行：
+这时通过浏览器访问 `localhost:8080/linux-riscv` 就可以看到邮件。也可以用 thunderbird + public-inbox-imapd or public-inbox-nntpd 等方式访问邮件。这种方法每次邮件有更新时，需要进行一次 `public-inbox-index` 操作才能看到新邮件。这里可以通过 `lore.conf` 中的 `hook` 参数自动进行 index：
 
 ```
 $ cat lore.conf
@@ -134,12 +134,12 @@ site = https://lore.kernel.org
 manifest = https://lore.kernel.org/manifest.js.gz
 
 [pull]
+post_update_hook = /path/to/public-inbox-index
 refresh = 300
 include = /linux-riscv/*
           /soc/*
           /stable-rt/*
 
-post_work_complete_hook = /path/to/public-inbox-index ${toplevel}/linux-riscv ${toplevel}/soc ${toplevel}/stable-rt
 
 $ systemctl --user restart grok-pull@lore
 ```
@@ -154,7 +154,7 @@ public-inbox-watch 可以跟踪一个本地邮箱的变化，自动更新到 pub
 
 ### procmail + public-inbox-mda 将邮件投递到自己的邮箱
 
-public-inbox-mda 和 public-inbox-watch 都常用于镜像一个邮件列表，与 public-inbox-watch 不同的是，public-inbox-mda 是每来一封新邮件做一次邮件投递操作，通常配合 procmail 等工具使用。public-inbox-watch 是一个持久的进程，会持续扫描整个本地邮箱的变动，这非常适合在一个已经有大量邮件的邮箱做镜像的场景。procmail + public-inbox-mda 的使用方法见下面文章：
+public-inbox-mda 和 public-inbox-watch 都常用于镜像一个邮件列表，与 public-inbox-watch 不同的是，public-inbox-mda 是每来一封新邮件做一次邮件投递操作，通常配合 procmail 等工具使用。public-inbox-watch 是一个持久的进程，会持续扫描邮箱的变动，这非常适合在一个已经有大量邮件的邮箱做镜像的场景。procmail + public-inbox-mda 的使用方法见下面文章：
 
 [procmail + public-inbox-mda 将邮件投递到自己的邮箱](./procmail+public-inbox-mda.md)
 

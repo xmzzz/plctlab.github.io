@@ -164,7 +164,7 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 * [用 public-inbox 搭建内核邮件列表本地镜像](./public-inbox.md)
 * [用 Grokmirror 管理镜像集群](./grokmirror.md)
 * [用 offlineIMAP + public-inbox-watch 镜像邮件列表](./offlineIMAP+public-inbox-watch.md)
-* []()
+* [用 procmail + public-inbox-mda 镜像邮件列表](./procmail+public-inbox-mda.md)
 
 # 6. 想知道更多提高效率的工具
 

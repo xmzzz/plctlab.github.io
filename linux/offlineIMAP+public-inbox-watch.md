@@ -39,7 +39,7 @@ cat ~/.public-inbox/config
         url = http://lore.kernel.org/linux-riscv
         inboxdir = /home/user/Mail/public-inbox/watch-linux-riscv
         newsgroup = org.infradead.lists.linux-riscv
-        watch = maildir:/home/xmz/offlineMail/iscas/offlineIMAP/
+        watch = maildir:/home/user/offlineMail/gmail/linux-riscv
         watchheader = List-Id:<linux-riscv.lists.infradead.org>
 ```
 
