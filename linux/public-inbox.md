@@ -19,7 +19,13 @@ $   tools@linux.kernel.org
 $ public-inbox-index ./tools
 ```
 
-`public-inbox-init` 默认会在 `~/.public-inbox/config` 生成配置信息：
+`public-inbox-init` 的格式是：
+
+```
+public-inbox-init -V2 NAME INBOX_DIR MY_URL LIST_ADDRESS
+```
+
+这会在 `~/.public-inbox/config` 生成配置信息：
 
 ```
 [publicinbox "mylist-tools"]
@@ -197,9 +203,13 @@ IMAP password 不填或任意。public-inbox 会将大的邮件列表分成多�
 
 ### git clone
 
-如果本地镜像是按照第一节描述的 [mirroring instructions](https://lore.kernel.org/linux-riscv/_/text/mirror/) 的方法，即用了 `git clone --mirror http://lore.kernel.org/tools/0 tools/git/0.git` 拉取了镜像。那么需要按照 `git remote update` 方法更新镜像：
+如果本地镜像是按照第一节描述的 [mirroring instructions](https://lore.kernel.org/linux-riscv/_/text/mirror/) 的方法，即用了 `git clone --mirror http://lore.kernel.org/tools/0 tools/git/0.git` 拉取了镜像。那么可以按照 `git fetch` 或者 `git remote update` 方法更新镜像：
 
 ```
+$ git --git-dir=tools/git/0.git fetch
+
+或者
+
 $ cd tools/git/0.git
 $ git remote update
 Fetching origin
