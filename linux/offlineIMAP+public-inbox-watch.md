@@ -1,4 +1,4 @@
-# offlineIMAP + public-inbox-watch 
+# offlineIMAP + public-inbox-watch 创建邮件列表镜像
 
 使用 offlineIMAP 工具可以在本地操作 IMAP 服务器上的邮件，并在定期执行 `offlineimap`  命令时同步到服务器，这在多个邮件客户端（MUA）访问 IMAP 服务等场景时很有用。
 
@@ -76,11 +76,11 @@ cat ~/.public-inbox/config
 重启下 `public-inbox-watch` ，会开始镜像整个 linux-riscv 邮件列表：
 
 ```
-$ public-inbox-watch 
+$ public-inbox-watch
 I: scanning
-W: 
+W:
 W: <nntp://nntp.lore.kernel.org/org.infradead.lists.linux-riscv> STARTTLS tried and failed (not requested)
-# 
+#
 # nntp://nntp.lore.kernel.org/org.infradead.lists.linux-riscv fetching ARTICLE 1..55323
 ```
 
