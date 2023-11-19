@@ -108,7 +108,7 @@ cat ~/.public-inbox/config
 
 ## 运行 grok-pull
 
-以上配置之后，运行 grok-pull 就可以每 300 秒拉取一次镜像更新，将新邮件投递到 publi-inbox 邮箱中：
+以上配置之后，运行 grok-pull 就可以每 300 秒拉取一次镜像更新，将新邮件投递到 public-inbox 邮箱中：
 
 ```
 $ grok-pull -o -c ~/.config/lore.conf
@@ -118,4 +118,5 @@ $ grok-pull -o -c ~/.config/lore.conf
 
 # 总结与致谢
 
-本文主要参考了 [Subscribing to lore lists with grokmirror](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror) ，感谢作者。作者在文章中详细介绍了 grokmirror + procmail 实现订阅邮件列表的效果，邮件会保存在本地邮箱。我在上面介绍的方法稍有区别，除了投递到本地邮箱之外，增加了使用 public-inbox-mda 投递到 public-inbox 邮箱。这样就可以通过 public-inbox-httpd 等服务实时看到邮件列表的更新，完成了镜像邮件列表的效果。
+本文主要参考了 [Subscribing to lore lists with grokmirror](https://people.kernel.org/monsieuricon/subscribing-to-lore-lists-with-grokmirror) ，感谢作者。作者在文章中详细介绍了 grokmirror + procmail 实现订阅邮件列表的效果，邮件会保存在本地邮箱。我在上面介绍的方法稍有区别，除了投递到本地邮箱之外，增加使用 public-inbox-mda 投递到本地 public-inbox 邮箱。使用 public-inbox-mda 投递的邮件可以通过 public-inbox-httpd 等服务实时看到本地邮件列表的更新，制作邮件列表镜像非常方便。
+

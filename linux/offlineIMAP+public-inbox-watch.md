@@ -1,14 +1,15 @@
 # offlineIMAP + public-inbox-watch 创建邮件列表镜像
 
-使用 offlineIMAP 工具可以在本地操作 IMAP 服务器上的邮件，并在定期执行 `offlineimap`  命令时同步到服务器，这在多个邮件客户端（MUA）访问 IMAP 服务等场景时很有用。
+使用 offlineIMAP 工具可以在本地操作 IMAP 服务器上的邮件，并在定期执行 `offlineimap`  命令时将本地操作同步到服务器端，这在多个邮件客户端（MUA）访问 IMAP 服务等场景时很有用。
 
 public-inbox-watch 可以监测某个邮箱，将符合条件的邮件投递到 public-inbox 邮箱中，public-inbox 1.6.0 版本以上支持监测本地 maildir、nntp、nntps、imap 和 imaps。在镜像邮件列表时，通常利用邮件头的 “List-Id” 进行过滤。如果你的邮箱中有任何邮件列表完整的历史邮件，可以很方便的用 public-inbox-watch 制作镜像。
 
-为了解这两个工具的使用方法，我们搭建这样一个场景作为示例：假设我用自己的 gmail 邮箱订阅了 linux-riscv 邮件列表，我将 IMAP 服务器上的邮件定期拉取到本地，用 public-inbox-watch 将邮件归档到自己的 public-inbox 邮箱。定期删除一周以上的邮件并同步到 gmail IMAP服务器。
+本文章目的是介绍这两个工具的使用方法，为此虚拟几个场景作为示例，可能与你的日常需求不符，但当你明白 public-inbox 的使用方法后，就可以调整为适合自己的方式。这里假设我用自己的 gmail 邮箱订阅了 linux-riscv 邮件列表，我需要将 IMAP 服务器上的邮件定期拉取到本地，用 public-inbox-watch 将来自 linux-riscv 列表的邮件保存到自己的 public-inbox 邮箱。删除一周以上的邮件以及同步到 gmail IMAP服务器。
 
 1. 配置 offlineIMAP
 2. 配置 public-inbox-watch
-3. 清理 1 周以上的邮件并同步
+3. 清理 1 周以上的邮件
+4. 将本地操作同步到 IMAP
 
 ## 配置 offlineIMAP
 
@@ -86,20 +87,22 @@ W: <nntp://nntp.lore.kernel.org/org.infradead.lists.linux-riscv> STARTTLS tried 
 
 过程需要点时间，watch IMAP 也是类似的用法。
 
-## 清理 1 周以上的邮件并同步
+## 清理 1 周以上的邮件
 
-如果定期运行 offlineimap，本地已经通过 public-inbox-watch 镜像存储了邮件。那么你可以在常用的邮件客户端（MUA）中设置自动删除两周前的邮件列表邮件，以免邮箱爆满。
+如果定期运行 offlineimap，本地已经通过 public-inbox-watch 镜像存储了邮件。那么你可以在常用的邮件客户端（MUA）中设置自动删除一周前的邮件列表邮件，以免邮箱爆满。
 
-如果是普通的本地 maildir 格式邮箱，可以用下面命令删除超过14天的邮件：
+如果是普通的本地 maildir 格式邮箱，可以用下面命令删除超过一周的邮件：
 
 ```
 $ cd /path/to/Maildir
-$ find new cur -ctime +14 -type f -print0 | xargs -0 rm -f
+$ find new cur -ctime +7 -type f -print0 | xargs -0 rm -f
 ```
 
-但注意按方法不适合定期 offlineimap 的方式，因为每次同步会更新文件创建时间。
+但注意该方法不适合定期 offlineimap 的方式，因为每次同步操作会更新文件创建时间。
 
-将本地邮箱的邮件同步到 IMAP 服务器只需要：
+## 将本地操作同步到 IMAP
+
+将本地邮箱的状态同步到 IMAP 服务器只需要：
 
 ```
 $ offlineimap
