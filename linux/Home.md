@@ -7,10 +7,10 @@
 在内核开发流程中，你在下面哪个环节遇到了问题？
 
 * [检索上游补丁](#1-检索上游补丁)
-* [开发环境与代码风格](#todo)
+* [开发环境与代码风格](#2-开发环境与代码风格)
 * 提交内核代码
 * review 内核补丁
-* 内核邮件列表相关
+* [内核邮件列表相关](#5-内核邮件列表相关)
 * 想知道更多提高效率的工具
 
 # 1. 检索上游补丁
@@ -40,7 +40,7 @@
 
 ## 1.2 搜索邮件列表归档
 
-linux kernel开发一直是以电子邮件的形式进行的，因此邮件列表归档里可以找到很多有价值的信息。有关邮件列表的内容会在[FIXME:内核邮件列表相关](./mailing-list.md)章节介绍，这里只提供有关搜索邮件列表归档的指南。
+linux kernel开发一直是以电子邮件的形式进行的，因此邮件列表归档里可以找到很多有价值的信息。有关邮件列表的内容会在[内核邮件列表相关](#5-内核邮件列表相关)章节介绍，这里只提供有关搜索邮件列表归档的指南。
 
 * google
 * lore
@@ -68,7 +68,7 @@ lei的主要特点如下：
 
 lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lore + lei 甚至可以替代订阅邮件列表，使得只关注自己感兴趣的邮件，避免对自己无用的邮件充满邮箱。相关内容可参考下面文章。
 
-* [lore + lei: 高效检索内核邮件列表](./lore+lei.md)
+* [lore + lei: 高效检索内核邮件列表](./Lore-and-Lei.md)
 
 ## 1.3 patchwork
 
@@ -112,26 +112,25 @@ lore.kernel.org 是基于 public-inbox 的，因此可以用 lei 来检索。lor
 
 * 邮件相关知识
 * 订阅邮件列表
-* 检索邮件列表
 * 本地搭建列表镜像
 
 ## 5.1 邮件相关知识
 
 如果对邮件系统相关的概念不熟悉，可以看下这篇介绍，补一下邮件相关的计算机网络基础。
 
-* [邮件相关概念介绍](./about-email.md)
+* [邮件相关概念介绍](./About-Email.md)
 
 ## 5.2 订阅邮件列表
 
 传统方式订阅邮件列表会因为流量太高，导致大量未读邮件充满邮箱，因此可以考虑其他更高效的替代方式。
 
-* [lei 拉取感兴趣的邮件](./lore+lei.md)
+* [lei 拉取感兴趣的邮件](./Lore-and-Lei.md)
 
-## 5.4 本地搭建列表镜像
+## 5.3 本地搭建列表镜像
 
 本地搭建列表镜像，相当于在本地有了完整的邮件归档，对开发和邮件检索都会带来便利。
 
-* [用 public-inbox 搭建内核邮件列表本地镜像](./public-inbox.md)
-* [用 Grokmirror 管理镜像集群](./grokmirror.md)
-* [用 offlineIMAP + public-inbox-watch 镜像邮件列表](./offlineIMAP+public-inbox-watch.md)
-* [用 procmail + public-inbox-mda 镜像邮件列表](./procmail+public-inbox-mda.md)
+* [用 public-inbox 搭建内核邮件列表本地镜像](./Public-inbox.md)
+* [用 Grokmirror 管理镜像集群](./Grokmirror.md)
+* [用 offlineIMAP + public-inbox-watch 镜像邮件列表](./Public-inbox-watch-and-Offlineimap.md)
+* [用 procmail + public-inbox-mda 镜像邮件列表](./Public-inbox-mda-and-Procmail.md)

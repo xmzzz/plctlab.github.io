@@ -4,7 +4,7 @@ Linux 内核邮件列表流量很高，如果你不想订阅它，可以考虑�
 
 ## lei, public-inbox介绍
 
-lei 的全称是 public-inbox local email interface。它是 public-inbox 的接口工具。而 public-inbox 是为了更好的托管 Linux 邮件列表归档，由 Linux 基金会支持开发的一个项目。
+lei 的全称是 public-inbox local email interface。它是 public-inbox 的接口工具。public-inbox 是为了更好的托管 Linux 邮件列表归档，由 Linux 基金会支持开发的一个项目。
 
 在过去出现过很多好的邮件列表服务项目，比如 Gmane。但大部分项目都逐渐消失或者变得不可靠，这给邮件列表的归档带来困难。public-inbox 就是为了给 Linux 内核邮件列表建立一个完整统一的归档。它的设计有几个亮点：
 
@@ -134,7 +134,7 @@ $ lei forget-search ~/Mail/overlay
 
 ## lei 拉取邮件存放到 IMAP 服务器
 
-将邮件放到远程的 IMAP 服务器上会方便我们在多台设备上查收邮件。需要准备好自己邮箱账户的 IMAP 服务器信息，主要包括服务器地址、IMAP 服务的端口，用户名，密码。注意这里的密码可能是专用的客户端密码，这个需要根据你自己邮箱的服务器设置来确定。中科院邮件系统的服务器信息在[这里](https://help.cstnet.cn/changjianwenti/youjianshoufa/xitongcanshu.html)。
+将邮件放到远程的 IMAP 服务器上会方便我们在多台设备上查收邮件。需要准备好自己邮箱账户的 IMAP 服务器信息，主要包括服务器地址、IMAP 服务的端口，用户名，密码。注意这里的密码可能是专用的客户端密码，这个要看自己邮箱的服务器设置。
 
 首先要设置下 git 的密码管理，可以选择使用 libsecret 或者 store。libsecret 对密码进行了加密，store 是将密码明文存储在 `~/.git-credentials` 中。运行下面命令：
 
@@ -152,7 +152,6 @@ EOF
 ```
 
 第一次运行会要求输入用户名和密码。成功运行之后就会将检索到的邮件存放在 IMAP 服务器中。注意在邮件客户端可能需要刷新或者订阅新增的文件夹，才能看到文件夹以及其中的邮件。可以用 `watch -n 600 lei up --all` 或者 systemd user time 等方式设置定期自动拉取邮件。
-
 
 # 致谢
 

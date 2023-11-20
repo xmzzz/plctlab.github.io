@@ -105,7 +105,7 @@ $ systemctl --user restart grok-pull@lore
 
 ### public-inbox-init + index + netd
 
-git 镜像仓库可以按照 [用 public inbox 搭建内核邮件列表本地镜像](./public-inbox.md) 提到的方法进行初始化，建立索引，发起 http 或者 netd 服务，以 linux-riscv 列表为例，具体可以参考该文档：
+git 镜像仓库可以按照 [用 public inbox 搭建内核邮件列表本地镜像](./Public-inbox.md) 提到的方法进行初始化，建立索引，发起 http 或者 netd 服务，以 linux-riscv 列表为例，具体可以参考该文档：
 
 ```
 $ cd ~/Mail/grokmirror/lore
@@ -150,13 +150,13 @@ $ systemctl --user restart grok-pull@lore
 
 public-inbox-watch 可以跟踪一个本地邮箱的变化，自动更新到 public-inbox 邮箱中，在用 http 等方式可以实时看到更新。该本地邮箱配合 offlineIMAP 可以方便的同步到自己的 IMAP 服务器上，便于多个客户端查收邮件。具体见下面文章：
 
-[offlineIMAP + public-inbox-watch 跟踪本地邮箱](./offlineIMAP+public-inbox-watch.md)
+[offlineIMAP + public-inbox-watch 跟踪本地邮箱](./Public-inbox-watch-and-Offlineimap.md)
 
 ### procmail + public-inbox-mda 将邮件投递到自己的邮箱
 
 public-inbox-mda 和 public-inbox-watch 都常用于镜像一个邮件列表，与 public-inbox-watch 不同的是，public-inbox-mda 是每来一封新邮件做一次邮件投递操作，通常配合 procmail 等工具使用。public-inbox-watch 是一个持久的进程，会持续扫描邮箱的变动，这非常适合在一个已经有大量邮件的邮箱做镜像的场景。procmail + public-inbox-mda 的使用方法见下面文章：
 
-[procmail + public-inbox-mda 将邮件投递到自己的邮箱](./procmail+public-inbox-mda.md)
+[procmail + public-inbox-mda 将邮件投递到自己的邮箱](./Public-inbox-mda-and-Procmail.md)
 
 # 致谢
 

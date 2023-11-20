@@ -1,6 +1,6 @@
 # 用 public inbox 搭建内核邮件列表本地镜像
 
-如果对 public inbox 还不熟，可以先看下 [public inbox 的简单介绍](./lore+lei.md#lei-public-inbox介绍) 。
+如果对 public inbox 还不熟，可以先看下 [public inbox 的简单介绍](./Lore-and-Lei.md#lei-public-inbox介绍) 。
 
 ## clone && init
 

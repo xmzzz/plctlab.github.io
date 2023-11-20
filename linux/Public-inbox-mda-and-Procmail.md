@@ -1,8 +1,8 @@
 # 用 procmail + public-inbox-mda 镜像邮件列表
 
-public-inbox-mda 可以方便的投递邮件到自己的 public-inbox 邮箱，是作为 MDA (Mail Delivery Agent，邮件投递代理) 的角色，一般需要配合 procmail 等工具来用。如果你熟悉邮件系统相关知识的话，配置起来很简单。如果还不熟悉，可以先阅读[邮件相关概念介绍](./about-email.md)。
+public-inbox-mda 可以方便的投递邮件到自己的 public-inbox 邮箱，是作为 MDA (Mail Delivery Agent，邮件投递代理) 的角色，一般需要配合 procmail 等工具来用。如果你熟悉邮件系统相关知识的话，配置起来不难。如果还不熟悉，可以先阅读[邮件相关概念介绍](./About-Email.md)。
 
-我们选择使用 Grokmirror 工具来自动更新本地镜像，这里假设你已经成功配置了 [Grokmirror 管理镜像集群](./grokmirror.md)，如果还没有，可以先读下该文章。
+我们选择使用 Grokmirror 工具来自动更新本地镜像，这里假设你已经成功配置了 [Grokmirror 管理镜像集群](./Grokmirror.md)，如果还没有，可以先读下该文章。
 
 1. 配置 procmail
 2. 配置 grokmirror
@@ -31,11 +31,11 @@ LOGABSTRACT='all'
 
 ```
 
-作为演示的例子，上面配置中我多用了一个 offlineIMAP 配置的本地邮箱作为默认邮箱，配置方法可参考 [offlineIMAP + public-inbox-watch 创建邮件列表镜像](./offlineIMAP+public-inbox-watch.md) 。之后收到的每封邮件除投递到 public-inbox 邮箱之外，还会有一封副本投递到该默认邮箱。过滤部分的配置说明可以参考 `man procmailrc` 。
+作为演示的例子，上面配置中我多用了一个 offlineIMAP 配置的本地邮箱作为默认邮箱，配置方法可参考 [offlineIMAP + public-inbox-watch 创建邮件列表镜像](./Public-inbox-watch-and-Offlineimap.md) 。之后收到的每封邮件除投递到 public-inbox 邮箱之外，还会有一封副本投递到该默认邮箱。过滤部分的配置说明可以参考 `man procmailrc` 。
 
 ## 配置 grokmirror
 
-参考 [用 Grokmirror 管理镜像集群](./grokmirror.md) 中的配置，增加一个 hook：
+参考 [用 Grokmirror 管理镜像集群](./Grokmirror.md) 中的配置，增加一个 hook：
 
 ```
 $ cd ~/Mail/grokmirror
@@ -114,7 +114,7 @@ cat ~/.public-inbox/config
 $ grok-pull -o -c ~/.config/lore.conf
 ```
 
-也可以用 systemd 来管理，参考 [用 Grokmirror 管理镜像集群](./grokmirror.md) 中的相关章节。
+也可以用 systemd 来管理，参考 [用 Grokmirror 管理镜像集群](./Grokmirror.md) 中的相关章节。
 
 # 总结与致谢
 
